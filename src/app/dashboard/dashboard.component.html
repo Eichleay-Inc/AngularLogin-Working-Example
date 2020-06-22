@@ -1,0 +1,133 @@
+<div class="jumbotron">
+  
+  <h2>Basic Chart - No Aggregation</h2>
+  <dx-chart id="chart"
+    [dataSource]="dataSource"
+    title="Work Effort Projection">
+    <dxo-argument-axis argumentType="datetime">
+        <dxo-label overlappingBehavior="stagger">
+        </dxo-label>
+    </dxo-argument-axis>
+    <dxi-value-axis [min]=0 [max]=120 >
+    </dxi-value-axis>
+    <dxo-common-series-settings 
+        argumentField="Year"  >
+        <dxo-minor-tick [visible]="true"></dxo-minor-tick>
+        <dxo-point color='red' [visible]=false></dxo-point>
+    </dxo-common-series-settings>
+    <dxi-series 
+        type="stackedsplinearea"
+        valueField="SO"
+        name="Committed">
+    </dxi-series>
+    <dxi-series 
+        type="stackedsplinearea"
+        valueField="CO"
+        name="Change Order">
+    </dxi-series>
+    <dxi-series 
+        type="stackedsplinearea"
+        valueField="Trend"
+        name="Trend">
+    </dxi-series>
+    <dxo-legend 
+        verticalAlignment="top"
+        horizontalAlignment="center">
+    </dxo-legend>
+    
+</dx-chart>
+
+<h2>Basic Chart - Aggregation Disabled</h2>
+  <dx-chart id="chart"
+    [dataSource]="detailedDataSource"
+    title="Aggregate Disabled">
+    <dxo-argument-axis argumentType="datetime">
+        <dxo-label overlappingBehavior="stagger">
+        </dxo-label>
+    </dxo-argument-axis>
+    <dxi-value-axis [min]=0 [max]=140 >
+    </dxi-value-axis>
+    <dxo-common-series-settings 
+        argumentField="Year"  >
+        <dxo-minor-tick [visible]="true"></dxo-minor-tick>
+        <dxo-point color='red' [visible]=false></dxo-point>
+    </dxo-common-series-settings>
+    <dxi-series 
+        type="stackedsplinearea"
+        valueField="SO"
+        name="Committed">
+    </dxi-series>
+    <dxi-series 
+        type="stackedsplinearea"
+        valueField="CO"
+        name="Change Order">
+    </dxi-series>
+    <dxi-series 
+        type="stackedsplinearea"
+        valueField="Trend"
+        name="Trend">
+    </dxi-series>
+    <dxo-legend 
+        verticalAlignment="top"
+        horizontalAlignment="center">
+    </dxo-legend>
+    
+</dx-chart>
+
+<h2>Basic Chart - Aggregation Enabled</h2>
+  <dx-chart id="chart"
+    [dataSource]="detailedDataSource"
+    title="Aggregate Enabled">
+    <dxo-argument-axis
+            argumentType="datetime"
+            aggregationInterval="week"
+            [valueMarginsEnabled]="false">
+        <dxo-label overlappingBehavior="stagger">
+        </dxo-label>
+        
+    </dxo-argument-axis>
+    <dxi-value-axis [min]=0 [max]=140 >
+    </dxi-value-axis>
+    <dxo-common-series-settings 
+        argumentField="Year"  >
+        <dxo-minor-tick [visible]="true"></dxo-minor-tick>
+        <dxo-point color='red' [visible]=false></dxo-point>
+        <dxo-aggregation
+          [enabled]="true">
+        </dxo-aggregation>
+    </dxo-common-series-settings>
+    <dxi-series 
+        type="stackedsplinearea"
+        valueField="SO"
+        name="Committed">
+        <dxo-aggregation #pointsAggregationSettings
+                enabled="useAggregation"
+                method="avg">
+        </dxo-aggregation>
+    </dxi-series>
+    <dxi-series 
+        type="stackedsplinearea"
+        valueField="CO"
+        name="Change Order"
+        >
+        <dxo-aggregation #pointsAggregationSettings
+                enabled="useAggregation"
+                method="avg">
+        </dxo-aggregation>
+    </dxi-series>
+    <dxi-series 
+        type="stackedsplinearea"
+        valueField="Trend"
+        name="Trend">
+        <dxo-aggregation #pointsAggregationSettings
+                enabled="useAggregation"
+                method="avg">
+        </dxo-aggregation>
+    </dxi-series>
+    <dxo-legend 
+        verticalAlignment="top"
+        horizontalAlignment="center">
+    </dxo-legend>
+    
+</dx-chart>
+</div>
